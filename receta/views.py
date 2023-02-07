@@ -1,6 +1,8 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
+from .forms import RecetaForm
 from .models import Receta, Categorias
 
 class RecetaListView(ListView):
@@ -11,7 +13,7 @@ class RecetaDetailView(DetailView):
      
 class RecetaCreateView(CreateView):
      model = Receta
-     fields = ['nombre', 'subnombre', 'imagen', 'ingredientes', 'receta', 'author', 'categorias']
+     form_class = RecetaForm
      success_url = reverse_lazy('listado')
 
 class RecetaUpdateView(UpdateView):

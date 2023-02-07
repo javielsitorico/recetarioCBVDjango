@@ -8,7 +8,9 @@
 </head>
 <body>
 
-     <a href="{% url 'crear' %}">Crear Receta</a>
+     {% if request.user.is_authenticated  %}
+          {% include 'receta/includes/receta_crear.html' %}
+     {% endif %}
 
      {% for receta in receta_list %}
           {% if not forloop.first %}<hr>{% endif %}

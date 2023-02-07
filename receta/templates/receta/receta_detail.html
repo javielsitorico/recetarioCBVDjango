@@ -14,14 +14,18 @@
      <p>{{ receta.ingredientes }}</p>
      <p>{{ receta.receta }}</p>
      <p>Receta añadida por: {{ receta.author }}</p>
-     <p>{{ receta.categorias }}</p>
+     <p>Categoría{{ receta.categorias.all|pluralize }}:</p>
+     <ul>
+     {% for categoria in receta.categorias.all %}
+          <li>{{ categoria }}</li>
+     {% endfor %}
+     </ul>
 
-     <img src="" alt="">
+     <img style="max-width: 200px; height: auto;" src="/media/{{receta.imagen}}" alt="imagen receta">
 
-     <nav>
-          <a href="{% url 'modificar' receta.id %}">Modificar</a>
-          <a href="{% url 'borrar' receta.id %}">Borrar</a>
-     </nav>
+     {% if request.user.is_authenticated  %}
+          {% include 'receta/includes/receta_update_delete.html' %}
+     {% endif %}
      
 </body>
 </html>
