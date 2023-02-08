@@ -33,7 +33,4 @@ class Receta(models.Model):
         ordering=['-created']
 
     def __str__(self):
-        return self.nombre 
-
-
-
+        return self.nombre
